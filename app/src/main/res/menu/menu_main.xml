@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.martynaskairys.popularmoviesstageone.MainActivity">
+
+    <item
+        android:id="@+id/mostPopular"
+        android:title="@string/most_popular"
+        android:orderInCategory="10"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/bestRated"
+        android:title="@string/best_rated"
+        android:orderInCategory="20"
+        app:showAsAction="never" />
+
+
+</menu>
