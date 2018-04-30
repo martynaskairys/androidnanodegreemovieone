@@ -35,7 +35,20 @@ public class DownloadMovieInfo extends AsyncTask<String, Void, String> {
 
             InputStream inputStream = httpURLConnection.getInputStream();
             StringBuffer stringBuffer = new StringBuffer();
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+
+            StringBuilder sb = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+                String nextLine;
+                while ((nextLine = reader.readLine()) != null) {
+                    sb.append(nextLine + "\n");
+                }
+                if (stringBuffer.length() == 0){
+                    return null;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             response = stringBuffer.toString();
 

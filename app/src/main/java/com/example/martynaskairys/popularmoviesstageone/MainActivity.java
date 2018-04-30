@@ -122,24 +122,24 @@ public class MainActivity extends AppCompatActivity {
         DownloadMovieInfo downloadMovieInfo = new DownloadMovieInfo();
 
         try {
-            String results = downloadMovieInfo.execute(user_choice).get();
-            if (results != null) {
-                JSONObject movie = new JSONObject(results);
-                movieDetails = movie.getJSONArray("results");
-
-                return true;
-            } else
-                return false;
+            String results = downloadMovieInfo.onPostExecute(user_choice);
 
         } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
         return false;
     }
 
+    protected void onPostExecute (String results) throws JSONException {
+
+        if (results != null) {
+            JSONObject movie = new JSONObject(results);
+            movieDetails = movie.getJSONArray("results");
+            for (int i = 0; i < movieDetails.length(); i++){
+                JSONObject mov = movieDetails.getJSONObject(i);
+                imgUrl[i] = "http://image.tmdb.org/t/p/w200/"+mov.getString("poster_path");
+            }
+        }
+    }
 }
